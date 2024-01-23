@@ -1,12 +1,14 @@
 import * as registry from "./registry.js";
 
-const STATUS_NOT_INITIATED = 0;
-const STATUS_LOADING = 1;
-const STATUS_LOADED = 2;
+export const EngineStatus = {
+  NOT_INITIATED: 0,
+  LOADING: 1,
+  LOADED: 2,
+};
 
 export const Engine = class {
   static instance = null;
-  status = STATUS_NOT_INITIATED;
+  status = EngineStatus.NOT_INITIATED;
   registry = new registry.Registry();
   runFrameRef = this.runFrame.bind(this);
 
@@ -30,12 +32,12 @@ export const Engine = class {
     }
 
     this.status = (this.refs.root?.document?.readyState === "complete")
-      ? STATUS_LOADED
-      : STATUS_LOADING;
+      ? EngineStatus.LOADED
+      : EngineStatus.LOADING;
 
-    if (this.status === STATUS_LOADING) {
+    if (this.status === EngineStatus.LOADING) {
       this.refs.root?.addEventListener?.("load", () => {
-        this.status = STATUS_LOADED;
+        this.status = EngineStatus.LOADED;
       });
     }
 

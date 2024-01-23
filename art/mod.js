@@ -9,6 +9,7 @@ export const init = () => {
     e.refs.root = globalThis;
     e.refs.canvas = document.getElementById("canvas");
     e.refs.ctx = e.refs.canvas.getContext("2d");
+    // e.refs.ctx.imageSmoothingEnabled = true;
 
     e.init();
   });
