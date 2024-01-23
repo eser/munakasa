@@ -1,0 +1,8 @@
+{
+  "recommendations": [
+    "denoland.vscode-deno",
+    "ronilaukkarinen.vscode-stylefmt",
+    "ryanluker.vscode-coverage-gutters",
+    "yandeu.five-server"
+  ]
+}

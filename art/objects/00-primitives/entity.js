@@ -7,6 +7,6 @@ export const Entity = class {
   constructor() {
   }
 
-  onThink(_context) {
+  onThink(_e) {
   }
 };

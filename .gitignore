@@ -3,3 +3,19 @@
 # OS-specific files
 .DS_Store
 Thumbs.db
+
+# Editor metadata
+.vscode/*
+!.vscode/extensions.json
+!.vscode/launch.json
+!.vscode/settings.json
+.idea/*
+
+# sensitive files
+*.key
+*.pem
+*.swp
+
+# package managers
+node_modules/*
+package-lock.json

@@ -1,46 +1,22 @@
-import * as registry from "./registry.js";
-
-import * as stageDefault from "./objects/base/stage-default.js";
-import * as characterDefault from "./objects/base/character-default.js";
-
-const context = {
-  canvas: null,
-  ctx: null,
-
-  frametime: -1,
-};
-
-const onFrame = (time) => {
-  globalThis.requestAnimationFrame(onFrame);
-
-  context.frametime = time;
-
-  registry.entities.forEach((object, i) => {
-    if (object.nextThink !== null && context.frametime > object.nextThink) {
-      object.nextThink = null;
-      object.onThink(context);
-    }
-
-    if (object.willBeRemoved) {
-      registry.entities.splice(i, 1);
-      // console.log(`Object "${object.constructor.name}" is removed.`);
-    }
-  });
-};
-
-const onLoad = () => {
-  context.canvas = document.getElementById("canvas");
-  context.ctx = context.canvas.getContext("2d");
-
-  globalThis.requestAnimationFrame(onFrame);
-};
+import * as engine from "./objects/engine.js";
+import * as sceneReadinessChecker from "./objects/01-scenes/readiness-checker.js";
+import * as characterRandomGuy from "./objects/03-characters/random-guy.js";
 
 export const init = () => {
-  globalThis.addEventListener("DOMContentLoaded", onLoad);
+  const e = new engine.Engine();
 
-  const stage = new stageDefault.StageDefault();
-  registry.register(stage);
+  globalThis.addEventListener("DOMContentLoaded", () => {
+    e.refs.canvas = document.getElementById("canvas");
+    e.refs.ctx = e.refs.canvas.getContext("2d");
 
-  const playerOne = new characterDefault.CharacterDefault();
-  registry.register(playerOne);
+    e.init();
+  });
+
+  const scene = new sceneReadinessChecker.ReadinessCheckerScene();
+  const playerOne = new characterRandomGuy.RandomGuyCharacter();
+
+  e.registry.register(
+    scene,
+    playerOne,
+  );
 };

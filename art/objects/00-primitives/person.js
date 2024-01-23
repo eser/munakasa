@@ -12,7 +12,7 @@ export const Person = class extends entity.Entity {
     super();
   }
 
-  onThink(context) {
-    super.onThink(context);
+  onThink(e) {
+    super.onThink(e);
   }
 };
