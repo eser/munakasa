@@ -1,10 +1,12 @@
 export const Entity = class {
+  /** @type number | null */
+  nextThink = null;
   /** @type bool */
   willBeRemoved = false;
 
   constructor() {
   }
 
-  onFrame(_context) {
+  onThink(_context) {
   }
 };

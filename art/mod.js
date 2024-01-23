@@ -16,7 +16,10 @@ const onFrame = (time) => {
   context.frametime = time;
 
   registry.entities.forEach((object, i) => {
-    object.onFrame(context);
+    if (object.nextThink !== null && context.frametime > object.nextThink) {
+      object.nextThink = null;
+      object.onThink(context);
+    }
 
     if (object.willBeRemoved) {
       registry.entities.splice(i, 1);

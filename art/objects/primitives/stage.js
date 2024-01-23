@@ -5,7 +5,7 @@ export const Stage = class extends background.Background {
     super();
   }
 
-  onFrame(context) {
-    super.onFrame(context);
+  onThink(context) {
+    super.onThink(context);
   }
 };

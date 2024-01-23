@@ -5,7 +5,7 @@ export const Character = class extends person.Person {
     super();
   }
 
-  onFrame(context) {
-    super.onFrame(context);
+  onThink(context) {
+    super.onThink(context);
   }
 };
