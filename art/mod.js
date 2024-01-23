@@ -6,6 +6,7 @@ export const init = () => {
   const e = new engine.Engine();
 
   globalThis.addEventListener("DOMContentLoaded", () => {
+    e.refs.root = globalThis;
     e.refs.canvas = document.getElementById("canvas");
     e.refs.ctx = e.refs.canvas.getContext("2d");
 

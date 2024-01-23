@@ -12,6 +12,7 @@ export const Engine = class {
 
   frametime = -1;
   refs = {
+    root: null,
     canvas: null,
     ctx: null,
   };
@@ -28,21 +29,21 @@ export const Engine = class {
       this.setAsDefaultInstance();
     }
 
-    this.status = (globalThis.document?.readyState === "complete")
+    this.status = (this.refs.root?.document?.readyState === "complete")
       ? STATUS_LOADED
       : STATUS_LOADING;
 
     if (this.status === STATUS_LOADING) {
-      globalThis.addEventListener("load", () => {
+      this.refs.root?.addEventListener?.("load", () => {
         this.status = STATUS_LOADED;
       });
     }
 
-    globalThis.requestAnimationFrame?.(this.runFrameRef);
+    this.refs.root?.requestAnimationFrame?.(this.runFrameRef);
   }
 
   runFrame(time) {
-    globalThis.requestAnimationFrame(this.runFrameRef);
+    this.refs.root?.requestAnimationFrame?.(this.runFrameRef);
 
     this.frametime = time;
 
